@@ -1,38 +1,20 @@
-import { useState, type ReactNode } from "react"
-import "./App.css"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
+import { useEffect, type ReactNode } from "react"
+import { usePokemonStore } from "./store"
 
 const App = (): ReactNode => {
-    const [count, setCount] = useState(0)
+    const pokemonArray = usePokemonStore((state) => state.pokemonArray)
+    const getPokemonAll = usePokemonStore((state) => state.getPokemonAll)
 
+    console.log("----this is good")
+    useEffect(() => {
+    //     debugger
+        getPokemonAll()
+    }, [])
     return (
-        <>
-            <div>
-                <a href="https://vite.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img
-                        src={reactLogo}
-                        className="logo react"
-                        alt="React logo"
-                    />
-                </a>
-            </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
+        <div>
+            <p>여기에 출력</p>
+            <p>{JSON.stringify(pokemonArray)}</p>
+        </div>
     )
 }
 
